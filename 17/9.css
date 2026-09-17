@@ -11,6 +11,7 @@ public:
         vector<pair<int,int>> ans;
         while(end < arr.size()){
             sum += arr[end];
+            
             while(sum > target){
                 sum -= arr[st];
                 st++ ;
