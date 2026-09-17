@@ -1,0 +1,53 @@
+//264 top k frequent elements
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+
+        unordered_map<int, int> mp;
+
+        // Count frequency
+        for (int x : nums) {
+            mp[x]++;
+        }
+
+        // Min heap: {frequency, number}
+        priority_queue<
+            pair<int, int>,
+            vector<pair<int, int>>,
+            greater<pair<int, int>>
+        > pq;
+
+        for (auto it : mp) {
+
+            pq.push({it.second, it.first});
+
+            // Keep only k most frequent
+            if (pq.size() > k) {
+                pq.pop();
+            }
+        }
+
+        vector<int> ans;
+
+        while (!pq.empty()) {
+            ans.push_back(pq.top().second);
+            pq.pop();
+        }
+
+        return ans;
+    }
+};
+// priority queue arranges based on the basis of first value in the pair 
+// to arrange based on second value we have to create a custom function
+// class Compare {
+// public:
+//     bool operator()(pair<int,int> a, pair<int,int> b) {
+//         return a.second > b.second;
+//     }
+// };
+// priority_queue<
+//     pair<int,int>,
+//     vector<pair<int,int>>,
+//     Compare
+// > pq;
+// and use like this
