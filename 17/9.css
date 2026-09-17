@@ -11,7 +11,7 @@ public:
         vector<pair<int,int>> ans;
         while(end < arr.size()){
             sum += arr[end];
-            
+
             while(sum > target){
                 sum -= arr[st];
                 st++ ;
@@ -46,3 +46,50 @@ public:
         
     }
 };
+//accepted one 
+class Solution {
+public:
+    int minSumOfLengths(vector<int>& arr, int target) {
+        int n = arr.size();
+        int st = 0;
+        int sum = 0;
+
+        const int INF = 1e9;
+
+        // best[i] = minimum length of a valid subarray
+        // completely inside [0...i]
+        vector<int> best(n, INF);
+
+        int ans = INF;
+
+        for (int end = 0; end < n; end++) {
+
+            sum += arr[end];
+
+            while (sum > target) {
+                sum -= arr[st];
+                st++;
+            }
+
+            if (sum == target) {
+                int len = end - st + 1;
+
+                // Previous subarray must end before st
+                if (st > 0 && best[st - 1] != INF) {
+                    ans = min(ans, len + best[st - 1]);
+                }
+
+                // This is the shortest valid subarray ending at end
+                best[end] = len;
+            }
+
+            // Keep the best subarray found so far
+            if (end > 0) {
+                best[end] = min(best[end], best[end - 1]);
+            }
+        }
+
+        return ans == INF ? -1 : ans;
+    }
+};
+
