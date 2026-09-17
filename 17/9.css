@@ -1,0 +1,47 @@
+//leetcode 1477 Find Two Non-overlapping Sub-arrays Each With Target Sum
+
+class Solution {
+public:
+    
+    int minSumOfLengths(vector<int>& arr, int target) {
+        int st = 0;
+        int end = 0;
+        int sum = 0;
+
+        vector<pair<int,int>> ans;
+        while(end < arr.size()){
+            sum += arr[end];
+            while(sum > target){
+                sum -= arr[st];
+                st++ ;
+            }
+            if(sum == target){
+                ans.push_back({end-st+1,st}) ;
+                //moove to next position
+                sum -= arr[st];
+                st++;
+
+            }
+            end++ ;
+        }
+        if(ans.size()<2) return -1 ;
+
+        int result = INT_MAX ;
+
+        for(int i=0;i<ans.size();i++){
+            for(int j = i+1;j<ans.size();j++){
+                int s1 = ans[i].second ;
+                int e1 = s1 + ans[i].first - 1 ;
+                int s2 = ans[j].second ;
+                int e2 = s2 + ans[j].first - 1 ;
+
+                if(e1 < s2 || e2 < s1){
+                    result = min(result,ans[i].first+ans[j].first) ;
+                }
+            }
+        }
+        return result == INT_MAX ? -1 : result ;
+
+        
+    }
+};
