@@ -54,3 +54,4 @@ public:
         return target % gcd(x, y) == 0;
     }
 };
+
