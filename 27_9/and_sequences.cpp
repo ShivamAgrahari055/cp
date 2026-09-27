@@ -1,25 +1,25 @@
-A sequence of n
- non-negative integers (n≥2
-) a1,a2,…,an
- is called good if for all i
- from 1
- to n−1
- the following condition holds true:
-a1&a2&…&ai=ai+1&ai+2&…&an,
-where &
- denotes the bitwise AND operation.
+// A sequence of n
+//  non-negative integers (n≥2
+// ) a1,a2,…,an
+//  is called good if for all i
+//  from 1
+//  to n−1
+//  the following condition holds true:
+// a1&a2&…&ai=ai+1&ai+2&…&an,
+// where &
+//  denotes the bitwise AND operation.
 
-You are given an array a
- of size n
- (n≥2
-). Find the number of permutations p
- of numbers ranging from 1
- to n
-, for which the sequence ap1
-, ap2
-, ... ,apn
- is good. Since this number can be large, output it modulo 109+7
-.
+// You are given an array a
+//  of size n
+//  (n≥2
+// ). Find the number of permutations p
+//  of numbers ranging from 1
+//  to n
+// , for which the sequence ap1
+// , ap2
+// , ... ,apn
+//  is good. Since this number can be large, output it modulo 109+7
+// .
 
 #include <bits/stdc++.h>
 using namespace std;
