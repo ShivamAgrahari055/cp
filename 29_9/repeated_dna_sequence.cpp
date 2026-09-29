@@ -96,3 +96,6 @@ public:
         return ans;
     }
 };
+
+// x &= (1 << 18) - 1;        // remove first character
+// x = (x << 2) | get(s[i]);  // add new character
